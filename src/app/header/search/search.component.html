@@ -1,0 +1,27 @@
+<p>search works!</p>
+<form (ngSubmit)="searchFormSubmit()">
+    <input
+        matInput
+        type="text"
+        name="search"
+        required
+        minlength="3"
+        placeholder="Search Players"
+        [formControl]="searchControl"
+        [matAutocomplete]="search"
+    />
+    <input
+        type="hidden"
+        name="search-id"
+        [formControl]="idControl"
+    />
+    <mat-autocomplete autoActiveFirstOption #search="matAutocomplete" (optionSelected)="setSearch($event)">
+        <mat-option *ngFor="let option of players | async" [value]="option" >
+            {{option.nickname}}
+        </mat-option>
+    </mat-autocomplete>
+    <button
+        mat-raised-button
+        color="accent"
+        type="submit">Search</button>
+</form>

@@ -1,26 +1,8 @@
-const path = require("path");
 const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const TankController = require("./controllers/tanks");
+const PlayerController = require("./controllers/players");
 
 const app = express();
-
-mongoose
-  .connect(
-    "mongodb+srv://max:" +
-      process.env.MONGO_ATLAS_PW +
-      "@cluster0-ntrwp.mongodb.net/node-angular"
-  )
-  .then(() => {
-    console.log("Connected to database!");
-  })
-  .catch(() => {
-    console.log("Connection failed!");
-  });
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -35,7 +17,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/posts", postsRoutes);
-app.use("/api/user", userRoutes);
+app.get("/api/:rg/tanks", TankController.getTanks);
+app.get("/api/:rg/players/search/:name", PlayerController.searchPlayers);
+app.get("/api/:rg/player/:id", PlayerController.getPlayer);
+app.get("/api/:rg/player/tanks/:id", TankController.getPlayerTanks);
 
 module.exports = app;
