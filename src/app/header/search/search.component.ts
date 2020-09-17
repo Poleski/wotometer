@@ -52,7 +52,8 @@ export class SearchComponent implements OnInit {
     }
 
     searchFormSubmit() {
-        //TODO: Redirect to player page based on idControl.value using router
+        const newRoute = "/player/" + this.idControl.value;
+        this.router.navigate([newRoute]);
         console.log(this.idControl.value);
     }
 }
