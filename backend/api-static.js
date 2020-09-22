@@ -44,7 +44,7 @@ const fields = {
         'logout_at'
     ],
     achievements: [],
-    player_tank_stats: ['random', 'tank_id', 'in_garage', 'mark_of_mastery', 'max_frags', 'max_xp'],
+    player_tank_stats: ['random', 'tank_id', 'mark_of_mastery', 'max_frags', 'max_xp'],
     tanks: ['is_premium', 'images.small_icon', 'images.contour_icon', 'type', 'short_name', 'nation', 'tier'],
     player_tank_achievements: []
 };

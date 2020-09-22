@@ -16,6 +16,8 @@
         [formControl]="idControl"
     />
     <mat-autocomplete autoActiveFirstOption #search="matAutocomplete" (optionSelected)="setSearch($event)">
+        <!-- TODO: Style the loading spinner -->
+        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
         <mat-option *ngFor="let option of players | async" [value]="option" >
             {{option.nickname}}
         </mat-option>
