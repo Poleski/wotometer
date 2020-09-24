@@ -71,18 +71,18 @@ export class SearchComponent implements OnInit {
         return this.recentSearch.filter(value => value.nickname.indexOf(query) >= 0);
     }
 
-    searchFormSubmit() {
+    submitSearchForm() {
         const submittedSearchResult: SearchResultsInterface = {
             nickname: this.searchControl.value,
             account_id: this.idControl.value
         };
-        this.saveToRecentSearches(submittedSearchResult);
+        this.saveRecentSearches(submittedSearchResult);
 
         const newRoute = "/player/" + this.idControl.value;
         this.router.navigate([newRoute]);
     }
 
-    saveToRecentSearches(value) {
+    saveRecentSearches(value) {
         let newRecentSearch = this.recentSearch;
         newRecentSearch.splice(0, 0, value);
         newRecentSearch = newRecentSearch.slice(0, this.searchResultsLength);
